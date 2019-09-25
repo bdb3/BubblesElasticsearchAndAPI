@@ -1,0 +1,87 @@
+Get all flags...
+
+GET _search
+{
+  "query": {
+    "exists": {
+      "field": "FlagType"
+    }
+  }
+}
+Get all votes...
+
+GET _search
+{
+  "query": {
+    "exists": {
+      "field": "Upvote"
+    }
+  }
+}
+
+Get a specific bubble OR flag OR Vote by ID...
+
+GET _search
+{
+  "query": {
+    "match": {
+      "_id": "GZ3jwGwBa9ao2c0bPgnv"
+    }
+  }
+}
+
+Get number of upvotes on bubble....
+GET bubbles/_search
+{
+  "query":{
+    "bool": {
+      "must": [
+          {"match": {
+            "Upvote" : true
+                    }
+          },
+    {
+      "match": {
+        "BubbleID": "A53jwGwBa9ao2c0bPgnv"
+      }
+    }
+  ]
+}
+}
+}
+
+New Bubble...
+
+POST bubbles/_doc/
+{
+    "BubbleID" : null,
+    "CreateDate" : "8/23/2019 5:26",
+    "BubbleType" : "Author",
+    "SeachTerms" : "How to cook eggplant",
+    "ImageUrl" : "none",
+    "BubbleContent" : "Cut and salt the eggplant, let it sit for 20 minutes. Squeeze out the liquid, then saute.",
+    "FlagAction" : "Not flagged",
+    "UserId" : "testuser1@linkedin.com",
+    "UserSocialMedia" : null,
+    "UserProfileImageURL" : null,
+    "FlagType" : null,
+    "Upvote" : null
+}
+
+New vote....
+
+POST bubbles/_doc/
+{
+    "BubbleID" : "A53jwGwBa9ao2c0bPgnv",
+    "CreateDate" : "8/23/2019 5:26",
+    "BubbleType" : null,
+    "SeachTerms" : null,
+    "ImageUrl" : null,
+    "BubbleContent" : null,
+    "FlagAction" : null,
+    "UserId" : "testuser1@linkedin.com",
+    "UserSocialMedia" : null,
+    "UserProfileImageURL" : null,
+    "FlagType" : null,
+    "Upvote" : true
+}

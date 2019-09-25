@@ -1,0 +1,119 @@
+endpoint - https://owm24ahi9l.execute-api.us-east-1.amazonaws.com/default/BubbleLambdaAPI
+
+API key - zfHrNbJfzc30EqauxGJSH2mHMe4cDZwA2I9GJF5X
+include the apikey in the request header...
+
+
+
+Request body for getting bubble, user, flag, or vote info by ID...
+
+{
+  "httpMethod": "GET",
+  "queryStringParameters": {
+    "ObjectID": "zQRq-WwB9AU-RE4GXn-m",
+    "Model": "bubble" (change to user,flag, or vote depending on type)
+  }
+}
+
+Request body for getting upvotes or downvotes based on bubble ID...
+
+{
+  "httpMethod": "GET",
+  "queryStringParameters": {
+    "ObjectID": "A53jwGwBa9ao2c0bPgnv",
+    "Model": "numVotes",
+    "Upvote": true (or false, depending on what info you want)
+  }
+}
+
+Request body for getting bubbles....
+
+{
+  "httpMethod": "GET",
+  "queryStringParameters": {
+    "Query": "good food",
+    "Model" : "getAllBubbles",
+    "FromNum": 0, (start of results)
+    "Size": 10 (results per page)
+  }
+}
+
+Request body for creating new bubble...
+
+{
+  "httpMethod": "POST",
+  "queryStringParameters": {
+    "BubbleID" : null,
+    "CreateDate" : "9/3/2019 5:26 PM",
+    "BubbleType" : "Author",
+    "SeachTerms" : "How to cook eggs",
+    "ImageUrl" : "none",
+    "BubbleContent" : "Whisk the eggs, add salt, pour in pan, stir with spatula.",
+    "FlagAction" : "Not flagged",
+    "UserId" : "testuser1@linkedin.com",
+    "UserSocialMedia" : null,
+    "UserProfileImageURL" : null,
+    "FlagType" : null,
+    "Upvote" : null
+  }
+}
+
+Request body for creating new user...
+
+{
+  "httpMethod": "POST",
+  "queryStringParameters": {
+    "BubbleID" : null,
+    "CreateDate" : "9/3/2019 5:26 PM",
+    "BubbleType" : null,
+    "SeachTerms" : null,
+    "ImageUrl" : null,
+    "BubbleContent" : null,
+    "FlagAction" : null,
+    "UserId" : "testuser1@linkedin.com",
+    "UserSocialMedia" : "none",
+    "UserProfileImageURL" : "none",
+    "FlagType" : null,
+    "Upvote" : null
+  }
+}
+
+Request body for creating new vote...
+
+{
+  "httpMethod": "POST",
+  "queryStringParameters": {
+    "BubbleID" : 'zQRq-WwB9AU-RE4GXn-m", #bubbleID of voted on bubble
+    "CreateDate" : "9/3/2019 5:26 PM", #createdate of vote
+    "BubbleType" : null,
+    "SeachTerms" : null,
+    "ImageUrl" : null,
+    "BubbleContent" : null,
+    "FlagAction" : null,
+    "UserId" : "testuser1@linkedin.com",   #user that made the vote
+    "UserSocialMedia" : null,
+    "UserProfileImageURL" : null,
+    "FlagType" : null,
+    "Upvote" : true   #false for downvote
+  }
+}
+
+Request body for creating new flag...
+
+{
+  "httpMethod": "POST",
+  "queryStringParameters": {
+    "BubbleID" : 'zQRq-WwB9AU-RE4GXn-m", #bubbleID of flagged bubble
+    "CreateDate" : "9/3/2019 5:26 PM", #createdate of flag
+    "BubbleType" : null,
+    "SeachTerms" : null,
+    "ImageUrl" : null,
+    "BubbleContent" : null,
+    "FlagAction" : null,
+    "UserId" : "testuser1@linkedin.com", #user that made the flag
+    "UserSocialMedia" : null,
+    "UserProfileImageURL" : null,
+    "FlagType" : "Hate Speech",
+    "Upvote" : null
+  }
+} #lambda function also updates the bubble stored in es FlagAction to "flagged"
