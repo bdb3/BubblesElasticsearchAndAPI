@@ -1,6 +1,5 @@
 endpoint - https://owm24ahi9l.execute-api.us-east-1.amazonaws.com/default/BubbleLambdaAPI
 
-API key - zfHrNbJfzc30EqauxGJSH2mHMe4cDZwA2I9GJF5X
 include the apikey in the request header...
 
 
